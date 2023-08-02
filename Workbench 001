@@ -1,0 +1,68 @@
+-- 1.1 Criação da base de dados "Hospital"
+
+create database Hospital;
+
+-- 1.2 Criação da tabela "Pacientes"
+
+use Hospital;
+
+create table Pacientes (
+id int primary key auto_increment,
+nome varchar(100),
+idade int,
+sexo varchar(10),
+doenca varchar(200),
+data_admissao date
+);
+
+-- 1.3 Inserção dos dados na tabela "Pacientes"
+
+insert into Pacientes(nome, idade, sexo, doenca, data_admissao)
+values
+("Ana Silva", 30, "Feminino","Pneumonia","2020-03-20"),
+("João Santos",45,"Masculino","Diabetes","2020-04-01"),
+("Maria Oliveira",22,"Feminino","Fratura","2020-04-02"),
+("Pedro Sousa",60,"Masculino","Hipertensão","2020-03-29"),
+("Lúcia Mendes",50,"Feminino","Covid-19","2020-04-03");
+
+-- 1.4 Realiza as Seguintes Consultas SQL:
+
+-- Qual é a média de idade dos pacientes?
+
+select avg(idade) as "Media Idades" from Pacientes;
+
+-- Qual é a doença mais comum entre os pacientes?
+
+SELECT doenca as "Doença", COUNT(doenca) AS "Quantidade" 
+FROM Pacientes 
+GROUP BY doenca 
+ORDER BY COUNT(doenca) DESC
+lIMIT 1;
+
+-- Quais são os nomes e idades dos pacientes que têm doença "Covid-19"?
+
+select nome as "Nome", idade as "Idade" from Pacientes where doenca = "Covid-19" order by idade;
+
+-- Quais os pacientes que tem idade superior a 40 anos?
+
+select nome as "Nome", idade as "Idade" from pacientes where idade >= 40 order by idade;
+
+-- Insira novos dados na tabela.
+
+insert into pacientes (nome, idade, sexo, doenca, data_admissao)
+values 
+	    ("Carlos Martins", 50, "Masculino", "Fratura", "2020-04-04"),
+    	("Paula Ferreira", 35, "Feminino", "Covid-19", "2020-04-05"),
+    	("Luiz Garcia", 28, "Masculino", "Dengue", "2020-04-05"),
+    	("Ana Luiza Almeira", 42, "Feminino", "Covid-19", "2020-04-06"),
+    	("Ricardo Rocha", 65, "Masculino", "Hipertensão", "2020-04-07");
+
+-- Consultas SQL para explorar os novos dados adicionados.
+
+-- Quais são os nomes e idades dos pacientes mais novos e mais velhos?
+
+select nome as "Nome", idade "Idade" from Pacientes where idade = (select max(idade) from Pacientes) or idade = (select min(idade) from Pacientes);
+
+-- Quantos pacientes existem por sexo?
+
+select sexo as "Sexo", count(sexo) as "Quantidade" from Pacientes group by sexo;
