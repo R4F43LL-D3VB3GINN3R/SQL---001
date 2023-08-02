@@ -51,7 +51,7 @@ select nome as "Nome", idade as "Idade" from pacientes where idade >= 40 order b
 
 insert into pacientes (nome, idade, sexo, doenca, data_admissao)
 values 
-	    ("Carlos Martins", 50, "Masculino", "Fratura", "2020-04-04"),
+        ("Carlos Martins", 50, "Masculino", "Fratura", "2020-04-04"),
     	("Paula Ferreira", 35, "Feminino", "Covid-19", "2020-04-05"),
     	("Luiz Garcia", 28, "Masculino", "Dengue", "2020-04-05"),
     	("Ana Luiza Almeira", 42, "Feminino", "Covid-19", "2020-04-06"),
